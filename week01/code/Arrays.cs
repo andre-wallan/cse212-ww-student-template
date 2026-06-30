@@ -9,11 +9,19 @@ public static class Arrays
     public static double[] MultiplesOf(double number, int length)
     {
         // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Plan:
+        // 1. Create an array of doubles with size 'length'.
+        // 2. For each index i from 0 to length-1, compute the (i+1)th multiple of 'number' as number * (i+1).
+        // 3. Store that value into the array at index i.
+        // 4. After filling the array, return it.
 
-        return []; // replace this return statement with your own
+        double[] multiples = new double[length];
+        for (int i = 0; i < length; i++)
+        {
+            multiples[i] = number * (i + 1);
+        }
+
+        return multiples;
     }
 
     /// <summary>
@@ -25,9 +33,30 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Plan:
+        // 1. Let n be the number of elements in 'data'. If n is 0, return immediately.
+        // 2. Reduce the rotation amount with modulo: k = amount % n. If k == 0, the list stays the same.
+        // 3. Take the last k elements (the tail) and the first n-k elements (the head).
+        // 4. Clear the original list and append the tail followed by the head so the list is rotated right by k.
+        // This modifies the provided list in-place.
+
+        int n = data.Count;
+        if (n == 0)
+        {
+            return;
+        }
+
+        int k = amount % n;
+        if (k == 0)
+        {
+            return;
+        }
+
+        List<int> tail = data.GetRange(n - k, k);
+        List<int> head = data.GetRange(0, n - k);
+
+        data.Clear();
+        data.AddRange(tail);
+        data.AddRange(head);
     }
 }
